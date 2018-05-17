@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">ToyProject</string>
+
+    <string name="http_connection">HttpConnection</string>
+    <string name="get">GET</string>
+    <string name="post">POST</string>
+    <string name="put">PUT</string>
+    <string name="delete">DELETE</string>
+
+</resources>
