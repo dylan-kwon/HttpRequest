@@ -1,10 +1,12 @@
 # HttpRequest (Kotlin)
 
+</br>
+</br>
+
 ## 1. 사용법
 
 ### Application.kt
-
-```java
+```kotlin
 // 초기화
 override fun onCreate() {
     super.onCreate()
@@ -13,7 +15,6 @@ override fun onCreate() {
 ```
 
 ### MainActivity.kt
-
 ```kotlin
 // GET API 호출 및 콜백 정의
 private fun requestGet() {
@@ -40,37 +41,31 @@ private fun requestGet() {
     }
 ```
 
-
 ### AndroidManifest.xml
-
 ```xml
 <!-- 퍼미션 추가 -->
 <uses-permission android:name="android.permission.INTERNET" />
 ```
-
 
 </br>
 
 ## 2. 제공 클래스
 
 ### HttpRequest.kt
-
 ```kotlin
 fun init(config: HttpRequestConfig = SimpleHttpRequestConfig());
 
 fun GET(url: String,
     header: MutableMap<String, String> = mutableMapOf(),
     query: MutableMap<String, String> = mutableMapOf()): HttpRequestAsyncTask;
-
+    
 fun POST(url: String,
     header: MutableMap<String, String> = mutableMapOf(),
     body: MutableMap<String, String> = mutableMapOf()): HttpRequestAsyncTask;
 
-
 fun PUT(url: String,
     header: MutableMap<String, String> = mutableMapOf(),
     body: MutableMap<String, String> = mutableMapOf()): HttpRequestAsyncTask;
-
 
 fun DELETE(url: String,
     header: MutableMap<String, String> = mutableMapOf(),
@@ -78,39 +73,28 @@ fun DELETE(url: String,
 ```
 
 ### HttpRequestAsyncTask.kt
-
 ```kotlin
 fun request(callback: HttpRequest.Callback? = null);
 ```
 
 ### HttpRequest.Callback (Interface)
-
 ```kotlin
 interface Callback {
     fun onSuccess(response: HttpResponse);
-
     fun onFail(response: HttpResponse);
 }
 ```
 
 ### HttpRequestConfig.kt & SimpleHttpRequestConfig.kt
-
 `HttpRequest.init(HttpRequestConfit);`를 통해 사용자 정의 구성을 사용할 수 있으며, SimpleHttpRequestConfig.kt가 기본값으로 설정되어 있음.
 ```kotlin
 interface HttpRequestConfig {
-
     fun doInput(): Boolean;                                 // default: true
-
     fun useCache(): Boolean;                                // default: true
-
     fun getCharset(): Charset;                              // default: UTF-8
-
     fun getBufferSize(): Int;                               // default: 1024
-
     fun getReadTimeoutMillis(): Int;                        // default: 10_000
-
     fun getConnectTimeoutMillis(): Int;                     // default: 10_000
-
     fun getDefaultHeader(): MutableMap<String, String>;     // default: empty (not null)
 
 }
