@@ -3,6 +3,7 @@
 ## 1. 사용법
 
 ### Application.kt
+
 ```kotlin
 // 초기화
 override fun onCreate() {
@@ -12,6 +13,7 @@ override fun onCreate() {
 ```
 
 ### MainActivity.kt
+
 ```kotlin
 // GET API 호출 및 콜백 정의
 private fun requestGet() {
@@ -40,6 +42,7 @@ private fun requestGet() {
 
 
 ### AndroidManifest.xml
+
 ```xml
 <!-- 퍼미션 추가 -->
 <uses-permission android:name="android.permission.INTERNET" />
@@ -51,6 +54,7 @@ private fun requestGet() {
 ## 2. 제공 클래스
 
 ### HttpRequest.kt
+
 ```kotlin
 fun init(config: HttpRequestConfig = SimpleHttpRequestConfig());
 
@@ -74,11 +78,13 @@ fun DELETE(url: String,
 ```
 
 ### HttpRequestAsyncTask.kt
+
 ```kotlin
 fun request(callback: HttpRequest.Callback? = null);
 ```
 
 ### HttpRequest.Callback (Interface)
+
 ```kotlin
 interface Callback {
     fun onSuccess(response: HttpResponse);
@@ -86,7 +92,9 @@ interface Callback {
     fun onFail(response: HttpResponse);
 }
 ```
+
 ### HttpRequestConfig.kt & SimpleHttpRequestConfig.kt
+
 `HttpRequest.init(HttpRequestConfit);`를 통해 사용자 정의 구성을 사용할 수 있으며, SimpleHttpRequestConfig.kt가 기본값으로 설정되어 있음.
 ```kotlin
 interface HttpRequestConfig {
