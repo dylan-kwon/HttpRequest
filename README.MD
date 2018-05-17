@@ -4,7 +4,7 @@
 
 ### Application.kt
 
-```kotlin
+```java
 // 초기화
 override fun onCreate() {
     super.onCreate()
