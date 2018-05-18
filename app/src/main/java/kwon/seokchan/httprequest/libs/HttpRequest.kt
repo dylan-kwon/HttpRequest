@@ -10,12 +10,17 @@ class HttpRequest private constructor() {
     companion object {
 
         const val TAG: String = "HttpRequest";
+
+        @JvmField
         var CONFIG: HttpRequestConfig? = null;
 
+        @JvmStatic
         fun init(config: HttpRequestConfig = SimpleHttpRequestConfig()) {
             this.CONFIG = config;
         }
 
+        @JvmStatic
+        @JvmOverloads
         fun GET(url: String,
                 header: MutableMap<String, String> = mutableMapOf(),
                 query: MutableMap<String, String> = mutableMapOf()): HttpRequestAsyncTask {
@@ -23,6 +28,8 @@ class HttpRequest private constructor() {
             return makeAsyncTask(url, Method.GET, header, query);
         }
 
+        @JvmStatic
+        @JvmOverloads
         fun POST(url: String,
                  header: MutableMap<String, String> = mutableMapOf(),
                  field: MutableMap<String, String> = mutableMapOf()): HttpRequestAsyncTask {
@@ -30,7 +37,8 @@ class HttpRequest private constructor() {
             return makeAsyncTask(url, Method.POST, header, field);
         }
 
-
+        @JvmStatic
+        @JvmOverloads
         fun PUT(url: String,
                 header: MutableMap<String, String> = mutableMapOf(),
                 field: MutableMap<String, String> = mutableMapOf()): HttpRequestAsyncTask {
@@ -38,7 +46,8 @@ class HttpRequest private constructor() {
             return makeAsyncTask(url, Method.PUT, header, field);
         }
 
-
+        @JvmStatic
+        @JvmOverloads
         fun DELETE(url: String,
                    header: MutableMap<String, String> = mutableMapOf(),
                    field: MutableMap<String, String> = mutableMapOf()): HttpRequestAsyncTask {
@@ -47,6 +56,7 @@ class HttpRequest private constructor() {
         }
 
 
+        @JvmStatic
         private fun makeAsyncTask(url: String,
                                   method: String,
                                   header: MutableMap<String, String> = mutableMapOf(),
