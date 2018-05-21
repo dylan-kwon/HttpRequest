@@ -1,7 +1,7 @@
-package kwon.seokchan.httprequest
+package kwon.seokchan.httprequest.sample
 
 import android.app.Application
-import kwon.seokchan.httprequest_android.HttpRequest
+import kwon.seokchan.httprequest.HttpRequest
 
 class Application: Application() {
 

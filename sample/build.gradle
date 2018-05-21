@@ -8,7 +8,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "kwon.seokchan.httprequest"
+        applicationId "kwon.seokchan.httprequest.sample"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -39,5 +39,5 @@ dependencies {
     androidTestImplementation "com.android.support.test:runner:$rootProject.ext.testRunnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoCoreVersion"
 
-    implementation project(path: ':httprequest-android')
+    implementation project(path: ':http-request')
 }

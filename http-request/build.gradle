@@ -1,20 +1,48 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
 
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'com.novoda.bintray-release'
+def bintrayProperties = new Properties()
+bintrayProperties.load(new FileInputStream(rootProject.file("bintray.properties")))
 
-publish {
-    userOrg = 'seokchankwon'
-    groupId = 'kwon.seokchan.httprequest'
-    artifactId = 'httprequest-android'
-    publishVersion = '1.0.0'
-    desc = 'Android HttpRequest Libs (Kotlin)'
-    website = 'https://github.com/seokchan-kwon/HttpRequest'
-    issueTracker = "https://github.com/seokchan-kwon/HttpRequest/issues"
-    repository = "https://github.com/seokchan-kwon/HttpRequest.git"
+group = 'seokchan.kwon'
+version = '1.0.0'
+
+bintray {
+    user = bintrayProperties['user']
+    key = bintrayProperties['key']
+
+    configurations = ['archives']
+
+    publish = true
+
+    pkg {
+        repo = 'android'
+        name = 'http-request'
+        userOrg = 'seokchan-kwon'
+
+        licenses = ['Apache-2.0']
+        labels = ['android', 'http']
+
+        vcsUrl = 'https://github.com/seokchan-kwon/HttpRequest.git'
+        websiteUrl = 'https://github.com/seokchan-kwon/HttpRequest'
+        issueTrackerUrl = 'https://github.com/seokchan-kwon/HttpRequest/issues'
+        githubRepo = 'seokchan-kwon/HttpRequest'
+        githubReleaseNotesFile = 'README.MD'
+
+        publicDownloadNumbers = true
+
+        version {
+            name = '1.0.0'
+            vcsTag = '1.0.0'
+            desc = '1.0.0 Update.'
+            released = new Date()
+        }
+    }
 }
 
 android {

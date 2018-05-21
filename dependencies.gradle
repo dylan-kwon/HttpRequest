@@ -10,5 +10,4 @@ ext {
     jUnitVersion = '4.12'
     testRunnerVersion = '1.0.2'
     espressoCoreVersion = '3.0.2'
-
 }

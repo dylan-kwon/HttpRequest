@@ -4,6 +4,23 @@ JAVA에서 연동 가능.
 </br>
 
 ## 1. 사용법
+### build.gradle (Project)
+```groovy
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url  "https://seokchan-kwon.bintray.com/android"
+        }
+        ...
+    }
+}
+```
+
+### build.gradle (Module)
+```groovy
+implementation 'seokchan.kwon:http-request:1.0.0@aar'
+```
 
 ### Application.kt
 ```kotlin

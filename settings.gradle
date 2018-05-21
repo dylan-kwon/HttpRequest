@@ -1,1 +1,1 @@
-include ':app', ':httprequest-android'
+include ':sample', ':http-request'
