@@ -1,6 +1,6 @@
 # HttpRequest (Kotlin)
+JAVA에서 연동 가능.
 
-</br>
 </br>
 
 ## 1. 사용법
@@ -53,7 +53,9 @@ private fun requestGet() {
 
 ### HttpRequest.kt
 ```kotlin
-fun init(config: HttpRequestConfig = SimpleHttpRequestConfig());
+fun init(config: HttpRequestConfig = getHttpRequestConfig());
+
+fun getHttpRequestConfig(): HttpRequestConfig;
 
 fun GET(url: String,
     header: MutableMap<String, String> = mutableMapOf(),
@@ -96,6 +98,5 @@ interface HttpRequestConfig {
     fun getReadTimeoutMillis(): Int;                        // default: 10_000
     fun getConnectTimeoutMillis(): Int;                     // default: 10_000
     fun getDefaultHeader(): MutableMap<String, String>;     // default: empty (not null)
-
 }
 ```
