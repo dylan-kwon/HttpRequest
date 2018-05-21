@@ -19,7 +19,11 @@ allprojects {
 
 ### build.gradle (Module)
 ```groovy
-implementation 'seokchan.kwon:http-request:1.0.0@aar'
+dependencies {
+    ...
+    implementation project(path: ':http-request')
+}
+
 ```
 
 ### Application.kt
