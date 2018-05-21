@@ -1,4 +1,4 @@
-package kwon.seokchan.httprequest.libs
+package kwon.seokchan.httprequest_android
 
 import java.nio.charset.Charset
 

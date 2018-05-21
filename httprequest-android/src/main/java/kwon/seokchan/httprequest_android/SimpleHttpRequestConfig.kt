@@ -1,4 +1,4 @@
-package kwon.seokchan.httprequest.libs
+package kwon.seokchan.httprequest_android
 
 import java.nio.charset.Charset
 
@@ -8,7 +8,7 @@ class SimpleHttpRequestConfig : HttpRequestConfig {
 
     override fun useCache(): Boolean = true;
 
-    override fun getCharset(): Charset = Charset.forName("UTF-8");
+    override fun getCharset(): Charset = Charsets.UTF_8;
 
     override fun getBufferSize(): Int = 1024;
 

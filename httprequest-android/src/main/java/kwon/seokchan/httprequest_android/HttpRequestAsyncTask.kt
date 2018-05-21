@@ -1,8 +1,7 @@
-package kwon.seokchan.httprequest.libs
+package kwon.seokchan.httprequest_android
 
 import android.os.AsyncTask
 import android.util.Log
-import kwon.seokchan.toyproject.http_connection.libs.HttpRequest
 import org.json.JSONObject
 import java.io.IOException
 import java.lang.IndexOutOfBoundsException
@@ -12,7 +11,8 @@ import java.net.URL
 
 class HttpRequestAsyncTask(
         private var mUrl: String,
-        private var mMethod: String) : AsyncTask<Void, Void, HttpResponse?>() {
+        private var mMethod: String,
+        private var mHttpRequestConfig: HttpRequestConfig = SimpleHttpRequestConfig()) : AsyncTask<Void, Void, HttpResponse?>() {
 
     public var mHeader: MutableMap<String, String> = mutableMapOf()
         set(value) {
@@ -24,16 +24,6 @@ class HttpRequestAsyncTask(
         set(value) {
             field.clear();
             field.putAll(value);
-        }
-
-    public var mHttpRequestConfig: HttpRequestConfig? = null
-        get() = field ?: synchronized(this) {
-            field ?: SimpleHttpRequestConfig().also {
-                field = it;
-            }
-        }
-        set(value) {
-            field = SimpleHttpRequestConfig()
         }
 
     private var mCallback: HttpRequest.Callback? = null;
@@ -114,14 +104,14 @@ class HttpRequestAsyncTask(
         // OPTION
         it.requestMethod = this.mMethod;
         it.doOutput = this.mMethod != HttpRequest.Method.GET;
-        it.doInput = this.mHttpRequestConfig!!.doInput();
-        it.useCaches = this.mHttpRequestConfig!!.useCache();
-        it.defaultUseCaches = this.mHttpRequestConfig!!.useCache();
-        it.readTimeout = this.mHttpRequestConfig!!.getReadTimeoutMillis();
-        it.connectTimeout = this.mHttpRequestConfig!!.getConnectTimeoutMillis();
+        it.doInput = this.mHttpRequestConfig.doInput();
+        it.useCaches = this.mHttpRequestConfig.useCache();
+        it.defaultUseCaches = this.mHttpRequestConfig.useCache();
+        it.readTimeout = this.mHttpRequestConfig.getReadTimeoutMillis();
+        it.connectTimeout = this.mHttpRequestConfig.getConnectTimeoutMillis();
 
         // HEADER
-        val defaultHeader: MutableMap<String, String> = this.mHttpRequestConfig!!.getDefaultHeader();
+        val defaultHeader: MutableMap<String, String> = this.mHttpRequestConfig.getDefaultHeader();
 
         for ((key, value) in defaultHeader) {
             it.setRequestProperty(key, value);
@@ -137,7 +127,7 @@ class HttpRequestAsyncTask(
             val jsonBody: JSONObject = JSONObject(body);
             val os = it.outputStream;
 
-            os.write(jsonBody.toString().toByteArray(this.mHttpRequestConfig!!.getCharset()));
+            os.write(jsonBody.toString().toByteArray(this.mHttpRequestConfig.getCharset()));
             os.flush();
             os.close();
         }

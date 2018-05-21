@@ -1,7 +1,6 @@
-package kwon.seokchan.httprequest.libs
+package kwon.seokchan.httprequest_android
 
 import android.util.Log
-import kwon.seokchan.toyproject.http_connection.libs.HttpRequest
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import java.io.InputStream

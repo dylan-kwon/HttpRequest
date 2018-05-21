@@ -1,9 +1,4 @@
-package kwon.seokchan.toyproject.http_connection.libs
-
-import kwon.seokchan.httprequest.libs.HttpRequestAsyncTask
-import kwon.seokchan.httprequest.libs.HttpRequestConfig
-import kwon.seokchan.httprequest.libs.HttpResponse
-import kwon.seokchan.httprequest.libs.SimpleHttpRequestConfig
+package kwon.seokchan.httprequest_android
 
 class HttpRequest private constructor() {
 
@@ -15,8 +10,15 @@ class HttpRequest private constructor() {
         var CONFIG: HttpRequestConfig? = null;
 
         @JvmStatic
-        fun init(config: HttpRequestConfig = SimpleHttpRequestConfig()) {
-            this.CONFIG = config;
+        fun init(config: HttpRequestConfig = getHttpRequestConfig()) {
+            CONFIG = config;
+        }
+
+        @JvmStatic
+        fun getHttpRequestConfig(): HttpRequestConfig = CONFIG ?: synchronized(this) {
+            CONFIG ?: SimpleHttpRequestConfig().also {
+                CONFIG = it;
+            }
         }
 
         @JvmStatic
@@ -62,10 +64,9 @@ class HttpRequest private constructor() {
                                   header: MutableMap<String, String> = mutableMapOf(),
                                   field: MutableMap<String, String> = mutableMapOf()): HttpRequestAsyncTask {
 
-            return HttpRequestAsyncTask(url, method).apply {
+            return HttpRequestAsyncTask(url, method, getHttpRequestConfig()).apply {
                 this.mHeader = header;
                 this.mField = field;
-                this.mHttpRequestConfig = CONFIG;
             };
         }
     }

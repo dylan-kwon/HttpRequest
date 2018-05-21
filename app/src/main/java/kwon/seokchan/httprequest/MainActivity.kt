@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
-import kwon.seokchan.toyproject.http_connection.libs.HttpRequest
-import kwon.seokchan.httprequest.libs.HttpResponse
+import kotlinx.android.synthetic.main.activity_main.*
+import kwon.seokchan.httprequest_android.HttpRequest
+import kwon.seokchan.httprequest_android.HttpResponse
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 

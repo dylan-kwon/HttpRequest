@@ -1,29 +1,52 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg = 'seokchankwon'
+    groupId = 'kwon.seokchan.httprequest'
+    artifactId = 'httprequest-android'
+    publishVersion = '1.0.0'
+    desc = 'Android HttpRequest Libs (Kotlin)'
+    website = 'https://github.com/seokchan-kwon/HttpRequest'
+    issueTracker = "https://github.com/seokchan-kwon/HttpRequest/issues"
+    repository = "https://github.com/seokchan-kwon/HttpRequest.git"
+}
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "kwon.seokchan.httprequest"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    lintOptions {
-        abortOnError false
-    }
+
+}
+
+tasks.withType(Javadoc).all {
+    enabled = false
+}
+
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+    options.addStringOption('charSet', 'UTF-8')
 }
 
 dependencies {
@@ -31,13 +54,10 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.ext.kotlinVersion"
 
-    implementation "com.android.support:design:$rootProject.ext.androidSupportVersion"
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.androidSupportVersion"
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVersion"
-
     testImplementation "junit:junit:$rootProject.ext.jUnitVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.ext.testRunnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoCoreVersion"
-
-    implementation project(path: ':httprequest-android')
+}
+repositories {
+    mavenCentral()
 }

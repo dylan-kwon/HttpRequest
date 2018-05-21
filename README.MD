@@ -86,7 +86,7 @@ interface Callback {
 ```
 
 ### HttpRequestConfig.kt & SimpleHttpRequestConfig.kt
-`HttpRequest.init(HttpRequestConfit);`를 통해 사용자 정의 구성을 사용할 수 있으며, SimpleHttpRequestConfig.kt가 기본값으로 설정되어 있음.
+`HttpRequest.init(HttpRequestConfit);`를 통해 사용자 정의 구성을 사용할 수 있으며, `SimpleHttpRequestConfig.kt`가 기본값으로 설정되어 있음.
 ```kotlin
 interface HttpRequestConfig {
     fun doInput(): Boolean;                                 // default: true
