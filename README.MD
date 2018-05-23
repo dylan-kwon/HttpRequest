@@ -1,4 +1,6 @@
 # HttpRequest (Kotlin)
+[ ![Download](https://api.bintray.com/packages/seokchan-kwon/android/http-request/images/download.svg?version=1.0.0) ](https://bintray.com/seokchan-kwon/android/http-request/1.0.0/link)
+
 JAVA에서 연동 가능.
 
 </br>

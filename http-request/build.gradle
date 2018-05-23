@@ -9,8 +9,11 @@ apply plugin: 'kotlin-android-extensions'
 def bintrayProperties = new Properties()
 bintrayProperties.load(new FileInputStream(rootProject.file("bintray.properties")))
 
-group = 'seokchan.kwon'
-version = '1.0.0'
+def HttpRequestProperties = new Properties()
+HttpRequestProperties.load(new FileInputStream(rootProject.file("./http-request/http_request.properties")))
+
+group = HttpRequestProperties['groupId']
+version = HttpRequestProperties['version']
 
 bintray {
     user = bintrayProperties['user']
@@ -22,25 +25,66 @@ bintray {
 
     pkg {
         repo = 'android'
-        name = 'http-request'
+        name = HttpRequestProperties['moduleName']
         userOrg = 'seokchan-kwon'
+
+        desc = 'HttpRequest-Android. (Kotlin)'
 
         licenses = ['Apache-2.0']
         labels = ['android', 'http']
 
-        vcsUrl = 'https://github.com/seokchan-kwon/HttpRequest.git'
-        websiteUrl = 'https://github.com/seokchan-kwon/HttpRequest'
-        issueTrackerUrl = 'https://github.com/seokchan-kwon/HttpRequest/issues'
-        githubRepo = 'seokchan-kwon/HttpRequest'
-        githubReleaseNotesFile = 'README.MD'
+        vcsUrl = rootProject.ext.gitHubVCSUrl
+        websiteUrl = rootProject.ext.gitHubUrl
+        issueTrackerUrl = rootProject.ext.gitHubIssueTrackerUrl
+        githubRepo = rootProject.ext.gitHubRepo
+        githubReleaseNotesFile = rootProject.ext.gitHubReleaseNotesFile
 
         publicDownloadNumbers = true
 
         version {
-            name = '1.0.0'
-            vcsTag = '1.0.0'
-            desc = '1.0.0 Update.'
+            name = HttpRequestProperties['version']
+            vcsTag = HttpRequestProperties['versionTag']
+            desc = HttpRequestProperties['versionDesc']
             released = new Date()
+        }
+    }
+}
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+
+            name HttpRequestProperties['moduleName']
+            description 'HttpRequest-Android (Kotlin)'
+            url rootProject.ext.gitHubUrl
+            inceptionYear '2018'
+
+            packaging HttpRequestProperties['packaging']
+            groupId HttpRequestProperties['groupId']
+            artifactId HttpRequestProperties['moduleName']
+            version HttpRequestProperties['version']
+
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+
+            scm {
+                connection rootProject.ext.gitHubVCSUrl
+                developerConnection rootProject.ext.gitHubVCSUrl
+                url rootProject.ext.gitHubUrl
+            }
+
+            developers {
+                developer {
+                    id 'seokchankwon'
+                    name 'seokchan.kwon'
+                    email 'seokchan.dev@gmail.com'
+                }
+            }
         }
     }
 }
@@ -88,4 +132,31 @@ dependencies {
 }
 repositories {
     mavenCentral()
+}
+
+// JCenter publish
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+// Optional docs
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+// Optional javadoc
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+//    archives javadocJar // Optional
+    archives sourcesJar
+}
+
+task findConventions << {
+    println project.getConvention()
 }
