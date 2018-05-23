@@ -23,7 +23,7 @@ allprojects {
 ```groovy
 dependencies {
     ...
-    implementation project(path: ':http-request')
+    implementation 'seokchan.kwon:http-request:1.0.0@aar'
 }
 
 ```
