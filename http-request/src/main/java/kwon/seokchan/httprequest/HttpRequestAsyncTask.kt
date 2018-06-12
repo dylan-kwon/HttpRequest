@@ -25,7 +25,8 @@ class HttpRequestAsyncTask(
             field.putAll(value);
         }
 
-    private var mCallback: HttpRequest.Callback? = null;
+    private var mOnSuccess: ((response: HttpResponse) -> Unit)? = null;
+    private var mOnFail: ((response: HttpResponse) -> Unit)? = null;
 
     companion object {
         const val TAG: String = "HttpRequestAsyncTask";
@@ -67,17 +68,22 @@ class HttpRequestAsyncTask(
         response?.let {
             when (response.code) {
                 HttpURLConnection.HTTP_OK -> {
-                    this.mCallback?.onSuccess(response);
+                    this.mOnSuccess?.let {
+                        it(response)
+                    };
                 }
                 else -> {
-                    this.mCallback?.onFail(response);
+                    this.mOnFail?.let {
+                        it(response)
+                    }
                 }
             }
 
         } ?: let {
             Log.e(TAG, "Networking Error!!");
         }
-        this.mCallback = null;
+        this.mOnSuccess = null;
+        this.mOnFail = null;
     }
 
     fun makeQueryUrl(queryMap: MutableMap<String, String>): String {
@@ -132,8 +138,12 @@ class HttpRequestAsyncTask(
         }
     }
 
-    fun request(callback: HttpRequest.Callback? = null) {
-        this.mCallback = callback;
+    @JvmOverloads
+    fun request(onSuccess: ((HttpResponse) -> Unit)? = null,
+                onFail: ((HttpResponse) -> Unit)? = null) {
+
+        this.mOnSuccess = onSuccess;
+        this.mOnFail = onFail;
         executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 

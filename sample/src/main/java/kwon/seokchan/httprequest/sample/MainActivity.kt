@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import kwon.seokchan.httprequest.HttpRequest
-import kwon.seokchan.httprequest.HttpResponse
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -56,15 +55,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 "page" to "3"
         );
         HttpRequest.GET("http://10.0.2.2:8000/api/kakao/channels/", header, query)
-                .request(object : HttpRequest.Callback {
-                    override fun onSuccess(response: HttpResponse) {
-                        Log.d(TAG, "responseCode = ${response.code}");
-                    }
+                .request({
+                    Log.d(TAG, "responseCode = ${it.code}");
 
-                    override fun onFail(response: HttpResponse) {
-                        Log.d(TAG, "responseCode = ${response.code}");
-                    }
-                })
+                }, {
+                    Log.d(TAG, "responseCode = ${it.code}");
+                });
     }
 
     private fun requestPost() {
@@ -79,15 +75,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 "page" to "1"
         );
         HttpRequest.POST("http://10.0.2.2:8000/api/kakao/channels/", header, body)
-                .request(object : HttpRequest.Callback {
-                    override fun onSuccess(response: HttpResponse) {
-                        Log.d(TAG, "responseCode = ${response.code}");
-                    }
+                .request({
+                    Log.d(TAG, "responseCode = ${it.code}");
 
-                    override fun onFail(response: HttpResponse) {
-                        Log.d(TAG, "responseCode = ${response.code}");
-                    }
-                })
+                }, {
+                    Log.d(TAG, "responseCode = ${it.code}");
+                });
     }
 
     private fun requestPut() {
@@ -102,15 +95,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 "page" to "4"
         );
         HttpRequest.PUT("http://10.0.2.2:8000/api/kakao/channels/", header, body)
-                .request(object : HttpRequest.Callback {
-                    override fun onSuccess(response: HttpResponse) {
-                        Log.d(TAG, "responseCode = ${response.code}");
-                    }
+                .request({
+                    Log.d(TAG, "responseCode = ${it.code}");
 
-                    override fun onFail(response: HttpResponse) {
-                        Log.d(TAG, "responseCode = ${response.code}");
-                    }
-                })
+                }, {
+                    Log.d(TAG, "responseCode = ${it.code}");
+                });
     }
 
     private fun requestDelete() {
@@ -125,15 +115,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 "page" to "6"
         );
         HttpRequest.DELETE("http://10.0.2.2:8000/api/kakao/channels/", header, body)
-                .request(object : HttpRequest.Callback {
-                    override fun onSuccess(response: HttpResponse) {
-                        Log.d(TAG, "responseCode = ${response.code}");
-                    }
+                .request({
+                    Log.d(TAG, "responseCode = ${it.code}");
 
-                    override fun onFail(response: HttpResponse) {
-                        Log.d(TAG, "responseCode = ${response.code}");
-                    }
-                })
+                }, {
+                    Log.d(TAG, "responseCode = ${it.code}");
+                });
     }
 
 }

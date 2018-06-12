@@ -25,7 +25,6 @@ dependencies {
     ...
     implementation 'seokchan.kwon:http-request:1.0.0@aar'
 }
-
 ```
 
 ### Application.kt
@@ -52,15 +51,12 @@ private fun requestGet() {
                 "paramC" to "C"
         );
         HttpRequest.GET(API_URL, header, query)
-                .request(object : HttpRequest.Callback {
-                    override fun onSuccess(response: HttpResponse) {
-                        Log.d(TAG, "responseCode = ${response.code}");
-                    }
+                .request({
+                    Log.d(TAG, "responseCode = ${it.code}");
 
-                    override fun onFail(response: HttpResponse) {
-                        Log.d(TAG, "responseCode = ${response.code}");
-                    }
-                });
+                }, {
+                    Log.d(TAG, "responseCode = ${it.code}");
+                })
     }
 ```
 
@@ -99,15 +95,8 @@ fun DELETE(url: String,
 
 ### HttpRequestAsyncTask.kt
 ```kotlin
-fun request(callback: HttpRequest.Callback? = null);
-```
-
-### HttpRequest.Callback (Interface)
-```kotlin
-interface Callback {
-    fun onSuccess(response: HttpResponse);
-    fun onFail(response: HttpResponse);
-}
+@JvmOverloads
+fun request(onSuccess: ((HttpResponse) -> Unit)? = null, onFail: ((HttpResponse) -> Unit)? = null);
 ```
 
 ### HttpRequestConfig.kt & SimpleHttpRequestConfig.kt

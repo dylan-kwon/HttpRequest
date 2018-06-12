@@ -10,6 +10,7 @@ class HttpRequest private constructor() {
         var CONFIG: HttpRequestConfig? = null;
 
         @JvmStatic
+        @JvmOverloads
         fun init(config: HttpRequestConfig = getHttpRequestConfig()) {
             CONFIG = config;
         }
@@ -76,12 +77,6 @@ class HttpRequest private constructor() {
         const val POST: String = "POST";
         const val PUT: String = "PUT";
         const val DELETE: String = "DELETE";
-    }
-
-    interface Callback {
-        fun onSuccess(response: HttpResponse);
-
-        fun onFail(response: HttpResponse);
     }
 
 }
