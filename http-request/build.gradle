@@ -6,88 +6,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-def bintrayProperties = new Properties()
-bintrayProperties.load(new FileInputStream(rootProject.file("bintray.properties")))
-
-def HttpRequestProperties = new Properties()
-HttpRequestProperties.load(new FileInputStream(rootProject.file("./http-request/http_request.properties")))
-
-group = HttpRequestProperties['groupId']
-version = HttpRequestProperties['version']
-
-bintray {
-    user = bintrayProperties['user']
-    key = bintrayProperties['key']
-
-    configurations = ['archives']
-
-    publish = true
-
-    pkg {
-        repo = 'android'
-        name = HttpRequestProperties['moduleName']
-        userOrg = 'seokchan-kwon'
-
-        desc = 'HttpRequest-Android. (Kotlin)'
-
-        licenses = ['Apache-2.0']
-        labels = ['android', 'http']
-
-        vcsUrl = rootProject.ext.gitHubVCSUrl
-        websiteUrl = rootProject.ext.gitHubUrl
-        issueTrackerUrl = rootProject.ext.gitHubIssueTrackerUrl
-        githubRepo = rootProject.ext.gitHubRepo
-        githubReleaseNotesFile = rootProject.ext.gitHubReleaseNotesFile
-
-        publicDownloadNumbers = true
-
-        version {
-            name = HttpRequestProperties['version']
-            vcsTag = HttpRequestProperties['versionTag']
-            desc = HttpRequestProperties['versionDesc']
-            released = new Date()
-        }
-    }
-}
-
-install {
-    repositories.mavenInstaller {
-        pom.project {
-
-            name HttpRequestProperties['moduleName']
-            description 'HttpRequest-Android (Kotlin)'
-            url rootProject.ext.gitHubUrl
-            inceptionYear '2018'
-
-            packaging HttpRequestProperties['packaging']
-            groupId HttpRequestProperties['groupId']
-            artifactId HttpRequestProperties['moduleName']
-            version HttpRequestProperties['version']
-
-            licenses {
-                license {
-                    name 'The Apache Software License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    distribution 'repo'
-                }
-            }
-
-            scm {
-                connection rootProject.ext.gitHubVCSUrl
-                developerConnection rootProject.ext.gitHubVCSUrl
-                url rootProject.ext.gitHubUrl
-            }
-
-            developers {
-                developer {
-                    id 'seokchankwon'
-                    name 'seokchan.kwon'
-                    email 'seokchan.dev@gmail.com'
-                }
-            }
-        }
-    }
-}
+group = 'com.github.seokchan-kwon'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -111,16 +30,6 @@ android {
 
 }
 
-tasks.withType(Javadoc).all {
-    enabled = false
-}
-
-tasks.withType(Javadoc) {
-    options.addStringOption('Xdoclint:none', '-quiet')
-    options.addStringOption('encoding', 'UTF-8')
-    options.addStringOption('charSet', 'UTF-8')
-}
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -129,34 +38,4 @@ dependencies {
     testImplementation "junit:junit:$rootProject.ext.jUnitVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.ext.testRunnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoCoreVersion"
-}
-repositories {
-    mavenCentral()
-}
-
-// JCenter publish
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-// Optional docs
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-// Optional javadoc
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-//    archives javadocJar // Optional
-    archives sourcesJar
-}
-
-task findConventions << {
-    println project.getConvention()
 }
