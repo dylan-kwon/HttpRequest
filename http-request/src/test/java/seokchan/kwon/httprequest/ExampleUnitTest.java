@@ -1,4 +1,4 @@
-package kwon.seokchan.http-request;
+package seokchan.kwon.http-request;
 
 import org.junit.Test;
 

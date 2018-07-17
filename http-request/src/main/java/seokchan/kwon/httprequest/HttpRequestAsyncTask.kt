@@ -1,4 +1,4 @@
-package kwon.seokchan.httprequest
+package seokchan.kwon.httprequest
 
 import android.os.AsyncTask
 import android.util.Log

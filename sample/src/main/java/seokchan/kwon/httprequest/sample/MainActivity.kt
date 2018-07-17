@@ -1,11 +1,11 @@
-package kwon.seokchan.httprequest.sample
+package seokchan.kwon.httprequest.sample
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
-import kwon.seokchan.httprequest.HttpRequest
+import seokchan.kwon.httprequest.HttpRequest
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 

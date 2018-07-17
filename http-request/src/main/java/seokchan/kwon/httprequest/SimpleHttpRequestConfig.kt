@@ -1,4 +1,4 @@
-package kwon.seokchan.httprequest
+package seokchan.kwon.httprequest
 
 import java.nio.charset.Charset
 
