@@ -1,21 +1,16 @@
 # HttpRequest (Kotlin)
-[ ![Download](https://api.bintray.com/packages/seokchan-kwon/android/http-request/images/download.svg?version=1.0.0) ](https://bintray.com/seokchan-kwon/android/http-request/1.0.0/link)
+[![](https://jitpack.io/v/seokchan-kwon/HttpRequest.svg)](https://jitpack.io/#seokchan-kwon/HttpRequest)
 
 JAVA에서 연동 가능.
-
-</br>
 
 ## 1. 사용법
 ### build.gradle (Project)
 ```groovy
 allprojects {
     repositories {
-        jcenter()
-        maven {
-            url  "https://seokchan-kwon.bintray.com/android"
-        }
-        ...
-    }
+	    ...
+		maven { url 'https://jitpack.io' }
+	}
 }
 ```
 
@@ -23,7 +18,7 @@ allprojects {
 ```groovy
 dependencies {
     ...
-    implementation 'seokchan.kwon:http-request:1.0.0@aar'
+    implementation 'com.github.seokchan-kwon:HttpRequest:1.0.2'
 }
 ```
 
@@ -36,7 +31,7 @@ override fun onCreate() {
 }
 ```
 
-### MainActivity.kt
+### Activity.kt
 ```kotlin
 // GET API 호출 및 콜백 정의
 private fun requestGet() {
