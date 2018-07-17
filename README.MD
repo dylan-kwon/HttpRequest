@@ -18,7 +18,7 @@ allprojects {
 ```groovy
 dependencies {
     ...
-    implementation 'com.github.seokchan-kwon:HttpRequest:1.0.2'
+    implementation 'com.github.seokchan-kwon:HttpRequest:1.0.3'
 }
 ```
 
