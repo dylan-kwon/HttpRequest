@@ -1,4 +1,4 @@
-package seokchan.kwon.httprequest;
+package dylan.kwon.httprequest;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("seokchan.kwon.http-request.test", appContext.getPackageName());
+        assertEquals("dylan.kwon.http-request.test", appContext.getPackageName());
     }
 }

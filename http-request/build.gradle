@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-group = 'com.github.seokchan-kwon'
+group = 'com.github.dylan-kwon'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion

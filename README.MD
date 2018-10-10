@@ -1,5 +1,5 @@
 # HttpRequest (Kotlin)
-[![](https://jitpack.io/v/seokchan-kwon/HttpRequest.svg)](https://jitpack.io/#seokchan-kwon/HttpRequest)
+[![](https://jitpack.io/v/dylan-kwon/HttpRequest.svg)](https://jitpack.io/#dylan-kwon/HttpRequest)
 
 JAVA에서 연동 가능.
 
@@ -18,7 +18,7 @@ allprojects {
 ```groovy
 dependencies {
     ...
-    implementation 'com.github.seokchan-kwon:HttpRequest:1.0.4'
+    implementation 'com.github.dylan-kwon:HttpRequest:1.0.4'
 }
 ```
 

@@ -1,4 +1,4 @@
-package seokchan.kwon.httprequest
+package dylan.kwon.httprequest
 
 class HttpRequest private constructor() {
 

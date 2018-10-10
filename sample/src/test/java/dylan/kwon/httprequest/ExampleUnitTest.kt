@@ -1,4 +1,4 @@
-package seokchan.kwon.httprequest
+package dylan.kwon.httprequest
 
 import org.junit.Test
 

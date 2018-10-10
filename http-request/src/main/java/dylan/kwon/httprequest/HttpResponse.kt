@@ -1,4 +1,4 @@
-package seokchan.kwon.httprequest
+package dylan.kwon.httprequest
 
 import android.util.Log
 import org.json.JSONObject

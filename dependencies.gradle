@@ -13,10 +13,4 @@ ext {
     jUnitVersion = '4.12'
     testRunnerVersion = '1.0.2'
     espressoCoreVersion = '3.0.2'
-
-    gitHubUrl = 'https://github.com/seokchan-kwon/HttpRequest'
-    gitHubVCSUrl = 'https://github.com/seokchan-kwon/HttpRequest.git'
-    gitHubIssueTrackerUrl = 'https://github.com/seokchan-kwon/HttpRequest/issues'
-    gitHubRepo = 'seokchan-kwon/HttpRequest'
-    gitHubReleaseNotesFile = 'README.MD'
 }
